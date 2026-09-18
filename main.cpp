@@ -1,7 +1,7 @@
 #include "str_ops.h"
 #include <iostream>
 #include <limits>
-
+#include <iomanip>
 int main(){
 	char* s = nullptr;
 	while(true){
@@ -19,19 +19,84 @@ int main(){
 			continue;
 		}
 		switch (choice) {
-			case 0:
+			case 1:{
+				const std::size_t BUF_SIZE = 256;
+				char buffer[BUF_SIZE];
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+				std::cout << "Введите строку: ";
+				std::cin.getline(buffer, BUF_SIZE);
+				str_delete(s);
+				s = str_alloc(buffer);
 				break;
-			case 1:
-				break;
+				}
 			case 2:
+				if (s == nullptr) {
+					std::cout << "Строка не введена\n";
+				} else {
+					str_print(s);
+					std::cout << std::endl;
+				}
 				break;
 			case 3:
+				if (s == nullptr) {
+					std::cout << "Строка не введена\n";
+				} else {
+					std::size_t length = str_len(s);
+					std::cout << "Длина строки: " << length << std::endl;
+				}
 				break;
-			case 4:
+			case 4: {
+				if (s == nullptr) {
+					std::cout << "Строка не введена\n";
+				} else {
+					std::size_t len = str_len(s);
+					char* buffer = new char[len + 1];
+
+					str_copy(buffer, s);            
+					std::cout << "Скопированная строка: ";
+					str_print(buffer);
+					std::cout << std::endl;
+
+					delete[] buffer;                 
+				}
 				break;
-			case 5:
+			}	
+			case 5: {
+				if (s == nullptr){
+					std::cout<<"Sting is empty"<< std::endl;
+					break;
+				}
+				std::cout<<"1. count words"<<std::endl;
+				std::cout<<"2. find substring"<<std::endl;
+				int choice_alg;
+				std::cin >> choice_alg;
+				if (choice_alg != 1 && choice_alg != 2 ){
+					std::cin.clear();
+					std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+					std::cout << "Некорректный ввод\n";
+					break;
+				}
+				if (choice_alg == 1){
+					std::cout<<str_count_words(s)<<std::endl;
+				}else{
+					const std::size_t SUB_SIZE = 256;
+					char substr[SUB_SIZE];
+					int position;
+					std::cout<<"Enter a substring"<<std::endl;
+					std::cin>>std::setw(SUB_SIZE)>>substr;
+					if(!(str_find_substr(s,substr,position))){
+						std::cout<<"Substr not found"<<std::endl;
+					}else{
+						std::cout<<position<<std::endl;
+					}
+				}
 				break;
+			}
+			case 0:
+				str_delete(s);
+				return 0;
 			default:
 				break;
 		}
 	}
+}
