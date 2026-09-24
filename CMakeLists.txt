@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.16)
 project(lab1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -13,7 +13,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-add_executable(run_tests test_variant.cpp)
+add_executable(run_tests tests.cpp)
 target_link_libraries(run_tests PRIVATE str_ops gtest_main)
 
 include(GoogleTest)
