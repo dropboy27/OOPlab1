@@ -99,3 +99,21 @@ TEST(StrAlloc, CopiesContent)
     str_delete(copy);
     EXPECT_EQ(copy, nullptr);
 }
+
+TEST(CountWords, ControlExample)
+{
+    EXPECT_EQ(str_count_words("hello world test"), 3);
+}
+
+TEST(FindSub, ControlExampleFound)
+{
+    int pos;
+    EXPECT_TRUE(str_find_substr("hello world test", "world", pos));
+    EXPECT_EQ(pos, 6);
+}
+
+TEST(FindSub, ControlExampleNotFound)
+{
+    int pos;
+    EXPECT_FALSE(str_find_substr("hello world test", "xyz", pos));
+}

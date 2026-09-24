@@ -76,7 +76,6 @@ bool str_find_substr(const char *s, const char *sub, int &out_pos)
 		return false;
 	}
 	std::size_t curr = 0;
-	std::size_t sub_counter = 0;
 	std::size_t sub_size = str_len(sub);
 	std::size_t s_size = str_len(s);
 	if (sub_size > s_size)
