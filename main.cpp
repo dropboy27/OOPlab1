@@ -63,11 +63,11 @@ int main(){
 			}	
 			case 5: {
 				if (s == nullptr){
-					std::cout<<"Sting is empty"<< std::endl;
+					std::cout<<"Строка не введена"<< std::endl;
 					break;
 				}
-				std::cout<<"1. count words"<<std::endl;
-				std::cout<<"2. find substring"<<std::endl;
+				std::cout<<"1. Посчитать слова"<<std::endl;
+				std::cout<<"2. Найти подстроку"<<std::endl;
 				int choice_alg;
 				std::cin >> choice_alg;
 				if (choice_alg != 1 && choice_alg != 2 ){
@@ -82,10 +82,10 @@ int main(){
 					const std::size_t SUB_SIZE = 256;
 					char substr[SUB_SIZE];
 					int position;
-					std::cout<<"Enter a substring"<<std::endl;
+					std::cout<<"Введите подстроку"<<std::endl;
 					std::cin>>std::setw(SUB_SIZE)>>substr;
 					if(!(str_find_substr(s,substr,position))){
-						std::cout<<"Substr not found"<<std::endl;
+						std::cout<<"Подстрока не найдена"<<std::endl;
 					}else{
 						std::cout<<position<<std::endl;
 					}
